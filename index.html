@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Свадебный салон "SAKURA"</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --main-pink: #fce4ec;
+      --accent-pink: #f06292;
+      --text-color: #5c3d50;
+      --background: #fffafc;
+      --card-bg: #fff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #fcc7d1; 
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+    header {
+      background: white;
+   
+      text-align: center;
+      border-bottom: 5px solid var(--accent-pink);
+    }
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      color: #fcc7d1;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin-top: 20px;
+      gap: 40px;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #f06292;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #fcc7d1;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      color:#f06292;
+    }
+    p, li {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .banner {
+  background: url('./51f40fb5-578f-494a-8a55-c9bb6264ac9e.png') center center / cover no-repeat;
+  width: 100%;
+  height: 70vh;
+  border-top: 5px solid var(--accent-pink);
+  border-bottom: 5px solid var(--accent-pink);
+  text-align: center;
+}
+
+
+    
+    
+
+    .gallery {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;          /* разрешаем перенос карточек */
+      justify-content: center;  /* центрируем галерею */
+      max-width: 100%;
+      height: auto;             /* убираем фиксированную высоту */
+      margin: 0 auto;
+    }
+
+    .dress-card {
+  flex: 1 1 300px;
+  max-width: 300px;
+  text-align: center; /* Центрирование текста */
+}
+
+.dress-card h3,
+.dress-card p,
+.dress-card .price {
+  margin: 10px 0;
+}
+
+.price {
+  font-weight: bold;
+  color: #d94878;
+  font-size: 1.1rem;
+}
+
+
+    .dress-card img {
+      width: 300px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .dress-card img:hover {
+      transform: scale(1.05);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 15px;
+      margin: 5px;
+      background-color: var(--accent-pink);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.95rem;
+    }
+
+    .btn:hover {
+      background-color: #d94878;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      text-align: center;
+      padding-top: 60px;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #fff;
+    }
+
+    .lightbox:target {
+      display: block;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .close-lightbox:hover {
+      color: var(--accent-pink);
+    }
+
+    .contact-form {
+      max-width: 500px;
+      margin: auto;
+      background: #ffffffcc;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: var(--accent-pink);
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #d94878;
+    }
+    .reviews-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+}
+
+.reviews-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.reviews-carousel::-webkit-scrollbar-thumb {
+  background: var(--accent-pink);
+  border-radius: 4px;
+}
+
+.review-card {
+  flex: 0 0 280px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(196, 80, 107, 0.1);
+  text-align: center;
+  color: var(--text-color);
+}
+
+.review-card img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid var(--accent-pink);
+}
+
+.review-card p {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.review-card strong {
+  color: var(--accent-pink);
+}
+
+
+    footer {
+      background: var(--main-pink);
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: var(--text-color);
+      border-top: 5px solid var(--accent-pink);
+    }
+
+
+
+
+    @media (max-width: 1024px) {
+  header h1 {
+    font-size: 2.8rem;
+  }
+
+  nav ul {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .banner {
+    height: 50vh;
+  }
+
+  .gallery {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2.2rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .banner {
+    height: 40vh;
+  }
+
+  .dress-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .dress-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .contact-form {
+    padding: 20px;
+    margin: 20px 10px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 10px;
+  }
+
+  header img {
+    height: 100px;
+  }
+
+  .banner {
+    height: 30vh;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p, li {
+    font-size: 1rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .review-card {
+    flex: 0 0 240px;
+  }
+}
+/* Общие стили */
+header {
+  position: relative;
+}
+
+nav ul {
+  display: flex;
+  gap: 30px;
+}
+
+#burger-toggle {
+  display: none;
+}
+
+.burger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 1000;
+}
+
+.burger span {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  
+  background: var(--accent-pink);
+  #burger-toggle:checked + .burger span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#burger-toggle:checked + .burger span:nth-child(2) {
+  opacity: 0;
+}
+
+#burger-toggle:checked + .burger span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+}
+
+
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  #burger-toggle:checked + .burger + nav ul {
+    max-height: 500px; /* меню раскроется */
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+  </style>
+</head>
+<body>
+ <header>
+  <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: auto;">
+    <img src="https://i.pinimg.com/736x/1a/e2/9e/1ae29edcf61869a44d5ceea19dd3a9d5.jpg" alt="Логотип" style="height: 150px; margin-left: 10px; background: transparent;" />
+    <input type="checkbox" id="burger-toggle" />
+    <label for="burger-toggle" class="burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <nav>
+      <ul>
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#gallery">Платья</a></li>
+        <li><a href="#accessories">Аксессуары</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+
+
+  
+
+  <div class="banner">
+    
+
+  </div>
+
+  <section id="about" style="background-color: #f3bac9; border-radius: 10px; padding: 60px 20px; margin: 40px auto; max-width: 1000px;">
+  <h2>О нас</h2>
+  <p style="text-align: center; max-width: 800px; margin: auto;">Добро пожаловать в "SAKURA" — место, где каждая невеста находит своё идеальное платье. Мы предлагаем прокат и покупку роскошных свадебных нарядов в нежной атмосфере заботы и внимания.</p>
+</section>
+
+
+  <section id="services" style="background-color: #f3bac9; border-radius: 10px; padding: 60px 20px; margin: 40px auto; max-width: 1000px;">
+    <h2>Наши услуги</h2>
+    <ul style="max-width: 600px; margin: auto; list-style: square; padding-left: 40px;">
+      <li>Прокат и продажа свадебных платьев</li>
+      <li>Пошив по индивидуальным меркам</li>
+      <li>Свадебные аксессуары</li>
+      <li>Стилисты и подготовка образа</li>
+    </ul>
+  </section>
+
+  <section id="gallery">
+    <h2>Платья</h2>
+    <div class="gallery">
+
+      <div class="dress-card">
+        <a href="#img1"><img src="https://i.pinimg.com/736x/1d/e0/c5/1de0c55a0c8da42842f52a091e2d1d44.jpg" alt="Платье 1"/></a>
+        <h3>Розовая Нежность</h3>
+        <p>Лёгкое и воздушное платье в пастельных тонах.</p>
+        <div class="price">Покупка: 50 000сом | Прокат: 14 000сом</div>
+        <a href="#contact" class="btn">Купить</a>
+        <a href="#contact" class="btn">Прокат</a>
+      </div>
+
+      <div class="dress-card">
+        <a href="#img2"><img src="https://i.pinimg.com/736x/28/fb/69/28fb69026873606839350acae0026c5b.jpg" alt="Платье 2"/></a>
+        <h3>Сказочная Лилия</h3>
+        <p>Изысканная классика для романтичной натуры.</p>
+        <div class="price">Покупка: 60 000сом | Прокат: 30 000сом</div>
+        <a href="#contact" class="btn">Купить</a>
+        <a href="#contact" class="btn">Прокат</a>
+      </div>
+
+      <div class="dress-card">
+        <a href="#img3"><img src="https://i.pinimg.com/736x/45/11/17/451117df51cf28b04be486ecf4dc92a4.jpg" alt="Платье 3"/></a>
+        <h3>Белый Лотос</h3>
+        <p>Платье с элегантным шлейфом и кружевным верхом.</p>
+        <div class="price">Покупка: 75 000сом | Прокат: 30 000сом</div>
+        <a href="#contact" class="btn">Купить</a>
+        <a href="#contact" class="btn">Прокат</a>
+      </div>
+
+      <div class="dress-card">
+        <a href="#img4"><img src="https://i.pinimg.com/736x/dd/04/d2/dd04d23d992baf4b183ab62c99ec3cdb.jpg" alt="Платье 1"/></a>
+        <h3>Розовая Нежность</h3>
+        <p>Лёгкое и воздушное платье в пастельных тонах.</p>
+        <div class="price">Покупка: 80 000сом | Прокат: 40 000сом</div>
+        <a href="#contact" class="btn">Купить</a>
+        <a href="#contact" class="btn">Прокат</a>
+      </div>
+
+      <div class="dress-card">
+        <a href="#img5"><img src="https://i.pinimg.com/736x/61/f3/78/61f378532140da45b297e0d693a1ec08.jpg" alt="Платье 2"/></a>
+        <h3>Сказочная Лилия</h3>
+        <p>Изысканная классика для романтичной натуры.</p>
+        <div class="price">Покупка: 100 000сом | Прокат: 50 000сом</div>
+        <a href="#contact" class="btn">Купить</a>
+        <a href="#contact" class="btn">Прокат</a>
+      </div>
+
+      <div class="dress-card">
+        <a href="#img6"><img src="https://i.pinimg.com/736x/11/e9/28/11e928e7aeeb3f77debfa284addd2b3f.jpg" alt="Платье 3"/></a>
+        <h3>Белый Лотос</h3>
+        <p>Платье с элегантным шлейфом и кружевным верхом.</p>
+        <div class="price">Покупка: 70 000сом | Прокат: 35 000сом</div>
+        <a href="#contact" class="btn">Купить</a>
+        <a href="#contact" class="btn">Прокат</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Новая секция с аксессуарами -->
+  <section id="accessories">
+    <h2>Аксессуары</h2>
+    <div class="gallery">
+      <div class="dress-card">
+        <a href="#acc1"><img src="https://i.pinimg.com/736x/4f/8b/4a/4f8b4a8bf8910ad49180f339c13b0045.jpg" alt="Фата"/></a>
+        <h3>Нежная фата</h3>
+        <p>Лёгкая и прозрачная, с деликатной отделкой.</p>
+        <div class="price">Покупка: 9 000сом | Прокат: 5 000сом</div>
+        <a href="#contact" class="btn">Купить</a>
+        <a href="#contact" class="btn">Прокат</a>
+      </div>
+
+      <div class="dress-card">
+        <a href="#acc2"><img src="https://i.pinimg.com/736x/98/25/d1/9825d1f3bf631c322dbd0dbedf0fcac6.jpg" alt="Свадебные перчатки"/></a>
+        <h3>Свадебные перчатки</h3>
+        <p>Элегантные длинные перчатки из кружева.</p>
+        <div class="price">Покупка: 10 000сом | Прокат: 5000сом</div>
+        <a href="#contact" class="btn">Купить</a>
+        <a href="#contact" class="btn">Прокат</a>
+      </div>
+
+      <div class="dress-card">
+        <a href="#acc3"><img src="https://i.pinimg.com/736x/e4/82/2d/e4822d047d40629d211e91f606561f82.jpg" alt="Украшение для волос"/></a>
+        <h3>Украшение для волос</h3>
+        <p>Стильная гребенка с жемчугом и стразами.</p>
+        <div class="price">Покупка: 20 000сом | Прокат: 10 000сом</div>
+        <a href="#contact" class="btn">Купить</a>
+        <a href="#contact" class="btn">Прокат</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Контакты</h2>
+    <form class="contact-form" action="#" method="post">
+      <label for="name">Ваше имя:</label>
+      <input type="text" id="name" name="name" placeholder="Введите имя" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Введите email" required />
+
+      <label for="service">Услуга:</label>
+      <select id="service" name="service" required>
+        <option value="" disabled selected>Выберите услугу</option>
+        <option value="buy">Покупка платья</option>
+        <option value="rent">Прокат платья</option>
+        <option value="accessories">Аксессуары</option>
+        <option value="tailor">Пошив</option>
+      </select>
+
+      <button type="submit">Отправить заявку</button>
+    </form>
+  </section>
+
+  <!-- Lightbox для платьев -->
+  <a href="#" class="lightbox" id="img1"><img src="https://i.pinimg.com/736x/a9/85/a1/a985a1746e37deff8cd39c20607e13c2.jpg" alt="Розовая Нежность большое"/><span class="close-lightbox">&times;</span></a>
+  <a href="#" class="lightbox" id="img2"><img src="https://i.pinimg.com/736x/28/fb/69/28fb69026873606839350acae0026c5b.jpg" alt="Сказочная Лилия большое"/><span class="close-lightbox">&times;</span></a>
+  <a href="#" class="lightbox" id="img3"><img src="https://i.pinimg.com/736x/45/11/17/451117df51cf28b04be486ecf4dc92a4.jpg" alt="Белый Лотос большое"/><span class="close-lightbox">&times;</span></a>
+  <a href="#" class="lightbox" id="img4"><img src="https://i.pinimg.com/736x/dd/04/d2/dd04d23d992baf4b183ab62c99ec3cdb.jpg" alt="Розовая Нежность большое"/><span class="close-lightbox">&times;</span></a>
+  <a href="#" class="lightbox" id="img5"><img src="https://i.pinimg.com/736x/61/f3/78/61f378532140da45b297e0d693a1ec08.jpg" alt="Сказочная Лилия большое"/><span class="close-lightbox">&times;</span></a>
+  <a href="#" class="lightbox" id="img6"><img src="https://i.pinimg.com/736x/11/e9/28/11e928e7aeeb3f77debfa284addd2b3f.jpg" alt="Белый Лотос большое"/><span class="close-lightbox">&times;</span></a>
+
+  <!-- Lightbox для аксессуаров -->
+  <a href="#" class="lightbox" id="acc1"><img src="https://i.pinimg.com/736x/4f/8b/4a/4f8b4a8bf8910ad49180f339c13b0045.jpg" alt="Фата большое"/><span class="close-lightbox">&times;</span></a>
+  <a href="#" class="lightbox" id="acc2"><img src="https://i.pinimg.com/736x/98/25/d1/9825d1f3bf631c322dbd0dbedf0fcac6.jpg" alt="Свадебные перчатки большое"/><span class="close-lightbox">&times;</span></a>
+  <a href="#" class="lightbox" id="acc3"><img src="https://i.pinimg.com/736x/e4/82/2d/e4822d047d40629d211e91f606561f82.jpg" alt="Украшение для волос большое"/><span class="close-lightbox">&times;</span></a>
+
+
+
+
+
+  <section id="reviews" style="max-width: 1000px; margin: 40px auto; padding: 20px;">
+  <h2 style="color: #f06292; text-align: center; margin-bottom: 30px;">Отзывы наших клиентов</h2>
+  <div class="reviews-carousel">
+    <div class="review-card">
+      <img src="https://i.pinimg.com/736x/79/12/43/79124395b0e1ae2483f9d87ac0a36424.jpg" alt="Клиент 1" />
+      <p>«Отличный сервис и красивые платья! Очень довольна покупкой.»</p>
+      <strong>— Анна</strong>
+    </div>
+    <div class="review-card">
+      <img src="https://i.pinimg.com/736x/ba/0a/48/ba0a48fa59e7b4b2606c85ac07d1dc98.jpg" alt="Клиент 2" />
+      <p>«Прокат прошёл идеально, платье просто шикарное!»</p>
+      <strong>— Мария</strong>
+    </div>
+    <div class="review-card">
+      <img src="https://i.pinimg.com/736x/c4/dd/84/c4dd84d8775fcbab31c21556736fb59e.jpg" alt="Клиент 3" />
+      <p>«Очень внимательные стилисты, помогли подобрать идеальный образ.»</p>
+      <strong>— Елена</strong>
+    </div>
+    <div class="review-card">
+      <img src="https://i.pinimg.com/736x/d5/6e/1d/d56e1d8fe9b02b0bfc01204e3247748a.jpg" alt="Клиент 4" />
+      <p>«Качественные аксессуары и быстрая доставка, спасибо!»</p>
+      <strong>— Светлана</strong>
+    </div>
+  </div>
+</section>
+
+  <footer>
+    &copy; 2025 Свадебный салон "SAKURA". Все права защищены.
+
+  </footer>
+</body>
+</html>
+
+
